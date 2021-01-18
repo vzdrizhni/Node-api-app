@@ -5,16 +5,24 @@ const path = require('path');
 const Post = require('../models/post');
 
 exports.getPosts = (req, res, next) => {
-  Post.find()
-    .then(posts => {
-      res.status(200).json({posts: posts})
-    })
-    .catch(err => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      next(err);
-    });
+  const currentPage = req.query.page || 1;
+  const perPage = 2;
+  let totalItems;
+  console.log(currentPage)
+  Post.find().countDocuments()
+      .then(count => {
+        totalItems = count;
+        return Post.find().skip((currentPage - 1) * perPage).limit(perPage);
+      })
+      .then(posts => {
+        res.status(200).json({posts: posts, totalItems: totalItems})
+      })
+      .catch(err => {
+        if (!err.statusCode) {
+          err.statusCode = 500;
+        }
+        next(err);
+      })
 }
 
 exports.createPost = (req, res, next) => {
@@ -129,9 +137,10 @@ exports.deletePost = (req, res, next) => {
           throw error;
         }
         clearImage(post.imageUrl);
-        Post.findByIdAndRemove(postId);
+        return Post.findByIdAndRemove(post._id);
       })
       .then(result => {
+        console.log(result)
         res.status(200).json({message: 'Post deleted'})
       })
       .catch(err => {
