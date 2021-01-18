@@ -21,9 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7b58d25f-39ce-424b-b112-89de5b0d4069" name="Default Changelist" comment="Add post editing.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/feed.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/feed.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/feed.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/feed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +60,7 @@
       <workItem from="1610701991245" duration="9943000" />
       <workItem from="1610796458929" duration="6547000" />
       <workItem from="1610887988605" duration="4351000" />
-      <workItem from="1610961438848" duration="10643000" />
+      <workItem from="1610961438848" duration="13729000" />
     </task>
     <task id="LOCAL-00001" summary="Save files statically">
       <created>1610702941877</created>
