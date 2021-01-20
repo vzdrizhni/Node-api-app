@@ -73,14 +73,7 @@ mongoose
   )
   .then(result => {
     const server = app.listen(8080);
-    const io = require('socket.io')(server, {
-      cors: {
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST"],
-        allowedHeaders: ["my-custom-header", "header"],
-        credentials: true
-      }
-    });
+    const io = require('./socket').init(server);
     io.on('connection', (socket) => {
       console.log('works')
     })
