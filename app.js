@@ -8,6 +8,7 @@ const {graphqlHTTP} = require('express-graphql');
 
 const graphQlSchema = require('./graphql/schema');
 const graphQlResolver = require('./graphql/resolvers');
+const auth = require('./middleware/auth')
 
 const cors = require('cors')
 
@@ -55,6 +56,8 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.use(auth);
 
 app.use('/graphql', graphqlHTTP({
   schema: graphQlSchema,
