@@ -114,11 +114,14 @@ module.exports = {
     };
   },
 
-  posts: async(args, req) => {
+  posts: async({page}, req) => {
     if (!req.isAuth) {
       const error = new Error('Not authenticated!');
       error.code = 401;
       throw error;
+    }
+    if (!page) {
+      page = 1
     }
     const totalPosts = await Post
       .find()
@@ -126,6 +129,8 @@ module.exports = {
     const posts = await Post
       .find()
       .sort({craetedAt: -1})
+      .skip((page -1) * 2)
+      .limit(2)
       .populate('creator');
     return {
       posts: posts.map(p => {
