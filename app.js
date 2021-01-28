@@ -9,7 +9,8 @@ const {graphqlHTTP} = require('express-graphql');
 
 const graphQlSchema = require('./graphql/schema');
 const graphQlResolver = require('./graphql/resolvers');
-const auth = require('./middleware/auth')
+const auth = require('./middleware/auth');
+const {clearImage} = require('./util/file')
 
 const cors = require('cors')
 
@@ -106,9 +107,4 @@ mongoose
   })
   .catch(err => console.log(err));
 
-const clearImage = (filePath) => {
-  filePath = path.join(__dirname, '..', filePath);
-  fs.unlink(filePath, err => {
-    console.log(err)
-  })
-}
+
