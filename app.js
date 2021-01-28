@@ -64,7 +64,10 @@ app.put('/post-image', (req, res, next) => {
   if (req.body.oldPath) {
     clearImage(req.body.oldPath)
   }
-  return res.status(200).json({message: 'Nice!', filePath: req.file.path.replace(/\\/g, "/")})
+  if (req.headers['user-agent'].includes('Windows')) {
+    return res.status(200).json({message: 'Nice!', filePath: req.file.path.replace(/\\/g, "/")})
+  }
+  return res.status(200).json({message: 'Nice!', filePath: req.file.path})
 })
 
 
