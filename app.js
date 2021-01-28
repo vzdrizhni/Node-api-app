@@ -52,6 +52,7 @@ app.use((req, res, next) => {
 app.use(auth);
 
 app.put('/post-image', (req, res, next) => {
+  console.log(req);
   if (!req.isAuth) {
     throw new Error('Not authenticated')
   }
@@ -63,7 +64,7 @@ app.put('/post-image', (req, res, next) => {
   if (req.body.oldPath) {
     clearImage(req.body.oldPath)
   }
-  return res.status(200).json({message: 'Nice!', filePath: req.file.path})
+  return res.status(200).json({message: 'Nice!', filePath: req.file.path.replace(/\\/g, "/")})
 })
 
 
@@ -71,7 +72,7 @@ app.use('/graphql', graphqlHTTP({
   schema: graphQlSchema,
   rootValue: graphQlResolver,
   graphiql: true,
-  formatError(err) {
+  customFormatErrorFn(err) {
     if (!err.originalError) {
       return err;
     }
